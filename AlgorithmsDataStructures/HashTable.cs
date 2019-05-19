@@ -54,5 +54,4 @@ namespace AlgorithmsDataStructures
             return -1;
         }
     }
-
 }
