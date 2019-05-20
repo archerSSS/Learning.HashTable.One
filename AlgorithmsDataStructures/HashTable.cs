@@ -24,7 +24,7 @@ namespace AlgorithmsDataStructures
             char[] chars = value.ToCharArray();
             for (int i = 0; i < value.Length-1; i++)
                 nx += Convert.ToInt32(chars[i]);
-
+            
             nx = nx % size;
             return nx;
             return 0;
@@ -32,10 +32,15 @@ namespace AlgorithmsDataStructures
 
         public int SeekSlot(string value)
         {
-            int nx = HashFun(value) + step;
+            int nx = HashFun(value);
 
             for (int i = 0; i < size; i++)
+            {
                 if (slots[nx] == null) return nx;
+                else nx += step;
+                if (nx >= size) nx = nx % size; 
+            }
+                
             return -1;
         }
 

@@ -10,7 +10,7 @@ namespace AlgorithmsDataStructures
     {
         public static void Main(String[] args)
         {
-            
+            int i = 1001 % 2;
         }
     }
 }
