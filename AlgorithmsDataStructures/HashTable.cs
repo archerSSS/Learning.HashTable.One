@@ -20,16 +20,14 @@ namespace AlgorithmsDataStructures
 
         public int HashFun(string value)
         {
-            if (size > 0)
-            {
-                int nx = 0;
-                char[] chars = value.ToCharArray();
-                for (int i = 0; i < value.Length - 1; i++)
-                    nx += Convert.ToInt32(chars[i]);
+            if (size < 1) return -1;
+            int nx = 0;
+            char[] chars = value.ToCharArray();
+            for (int i = 0; i < value.Length - 1; i++)
+                nx += Convert.ToInt32(chars[i]);
 
-                nx = nx % size;
-                return nx;
-            }
+            nx = nx % size;
+            return nx;
             return 0;
         }
 
