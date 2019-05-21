@@ -99,14 +99,14 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestHash_6()
         {
-            HashTable hat1 = new HashTable(5, 3);
+            HashTable hat = new HashTable(5, 3);
 
-            int s1 = hat1.HashFun("amb1");
-            int s2 = hat1.HashFun("amb2");
-            int s3 = hat1.HashFun("amb3");
-            int s4 = hat1.HashFun("amb4");
-            int s5 = hat1.HashFun("amb5");
-            int s6 = hat1.HashFun("amb5");
+            int s1 = hat.HashFun("amb1");
+            int s2 = hat.HashFun("amb2");
+            int s3 = hat.HashFun("amb3");
+            int s4 = hat.HashFun("amb4");
+            int s5 = hat.HashFun("amb5");
+            int s6 = hat.HashFun("amb5");
 
             Assert.AreEqual(s1, s2);
             Assert.AreEqual(s1, s3);
@@ -118,6 +118,89 @@ namespace UnitTestProject1
 
         [TestMethod]
         public void TestHash_7()
+        {
+            HashTable hat = new HashTable(5, 3);
+
+            int s1a = hat.SeekSlot("amb1");
+            int s1b = hat.SeekSlot("amb1");
+
+            int p1 = hat.Put("amb1");
+            int p2 = hat.Put("amb2");
+
+            int s1c = hat.SeekSlot("amb1");
+            int s2 = hat.SeekSlot("amb2");
+            int s3 = hat.SeekSlot("amb3");
+            
+            Assert.AreEqual(true, s1a == s1b);
+            Assert.AreEqual(true, s1a != s1c);
+            Assert.AreEqual(true, s1a == p1);
+            Assert.AreEqual(true, s1c != p1);
+            Assert.AreEqual(true, s2 != p2);
+
+            Assert.AreEqual(true, s3 != p1 && s3 != p2);
+        }
+
+
+        [TestMethod]
+        public void TestHash_8()
+        {
+            HashTable hat = new HashTable(5, 3);
+
+            Assert.AreEqual(true, hat.SeekSlot("word") >= 0);
+
+            for (int i = 0; i < 5; i++)
+                hat.Put("word");
+
+            Assert.AreEqual(-1, hat.SeekSlot("word"));
+            Assert.AreEqual(-1, hat.SeekSlot("whatever string"));
+        }
+
+
+        [TestMethod]
+        public void TestHash_9()
+        {
+            HashTable hat = new HashTable(5, 3);
+
+            Assert.AreEqual(-1, hat.Find("word"));
+
+            hat.SeekSlot("word");
+
+            Assert.AreEqual(-1, hat.Find("word"));
+
+            hat.HashFun("word");
+
+            Assert.AreEqual(hat.Put("word"), hat.Find("word"));
+            
+        }
+
+
+        [TestMethod]
+        public void TestHash_10()
+        {
+            HashTable hat = new HashTable(1, 3);
+
+            int p1 = hat.Put("word");
+            int p2 = hat.Put("ward");
+
+            Assert.AreEqual(0, p1);
+            Assert.AreEqual(-1, p2);
+        }
+
+
+        [TestMethod]
+        public void TestHash_11()
+        {
+            HashTable hat = new HashTable(0, 3);
+
+            int p1 = hat.Put("word");
+
+            Assert.AreEqual(-1, p1);
+
+        }
+
+
+        [TestMethod]
+        public void TestHash_A1()
         {
             HashTable hat = new HashTable(3, 5);
 
@@ -136,7 +219,7 @@ namespace UnitTestProject1
 
 
         [TestMethod]
-        public void TestHash_8()
+        public void TestHash_A2()
         {
             HashTable hat = new HashTable(3, 5);
 
@@ -154,7 +237,7 @@ namespace UnitTestProject1
 
 
         [TestMethod]
-        public void TestHash_9()
+        public void TestHash_A3()
         {
             HashTable hat = new HashTable(3, 5);
 
