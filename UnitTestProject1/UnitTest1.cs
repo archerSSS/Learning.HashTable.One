@@ -328,5 +328,22 @@ namespace UnitTestProject1
                     if (n != n2) Assert.AreEqual(true, nxs[0] != nxs[1]);
             }
         }
+
+
+        [TestMethod]
+        public void TestHashV2_5()
+        {
+            HashTable_1 hat = new HashTable_1(5, 16);
+            Random r = new Random();
+            int[] nxs = new int[18];
+
+
+            for (int i = 0; i < 18; i++)
+                nxs[i] = hat.Put(r.Next(hat.size));
+
+
+            Assert.AreEqual(-1, nxs[16]);
+            Assert.AreEqual(-1, nxs[17]);
+        }
     }
 }

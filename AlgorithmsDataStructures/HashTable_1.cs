@@ -72,22 +72,21 @@ namespace AlgorithmsDataStructures
         {
             r = new Random();
             this.size = size;
-            p = size * 3;
         }
 
         public int HashFun_1(int value)
         {
-            return (((r.Next(p - 1) + 1) * value + (r.Next(p) - 1)) % p) % size;
+            return (5 * value + 12) % 55 % size;
         }
 
         public int HashFun_2(int value)
         {
-            return (((r.Next(p - 1) + 1) * value + (r.Next(p) - 1)) % p) % size;
+            return (9 * value + 5) % 128 % size;
         }
 
         public int HashFun_3(int value)
         {
-            return (((r.Next(p - 1) + 1) * value + (r.Next(p) - 1)) % p) % size;
+            return (15 * value + 7) % 163 % size;
         }
 
         public int RandomHashFun(int value)
