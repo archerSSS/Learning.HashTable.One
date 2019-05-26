@@ -74,28 +74,13 @@ namespace AlgorithmsDataStructures
             this.size = size;
         }
 
-        public int HashFun_1(int value)
-        {
-            return (5 * value + 12) % 55 % size;
-        }
-
-        public int HashFun_2(int value)
-        {
-            return (9 * value + 5) % 128 % size;
-        }
-
-        public int HashFun_3(int value)
-        {
-            return (15 * value + 7) % 163 % size;
-        }
 
         public int RandomHashFun(int value)
         {
-            int hf = r.Next(3);
-            if (hf == 0) return HashFun_1(value);
-            if (hf == 1) return HashFun_2(value);
-            if (hf == 2) return HashFun_3(value);
-            return HashFun_1(value);
+            int p = r.Next(200);
+            int a = r.Next(p - 1) + 1;
+            int b = r.Next(p - 1);
+            return (a * value + b) % p % size;
         }
     }
 }
