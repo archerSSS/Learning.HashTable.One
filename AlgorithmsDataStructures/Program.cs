@@ -10,7 +10,14 @@ namespace AlgorithmsDataStructures
     {
         public static void Main(String[] args)
         {
-            int i = 1001 % 2;
+            Random r = new Random();
+            int[] nums = new int[100];
+            for (int i = 0; i < 100; i++)
+            {
+                nums[i] = r.Next(2);
+            }
         }
+
+
     }
 }

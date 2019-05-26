@@ -252,5 +252,81 @@ namespace UnitTestProject1
             Assert.AreEqual(false, s1 == s3);
             Assert.AreEqual(false, s2 == s3);
         }
+
+
+        [TestMethod]
+        public void TestHashV2_1()
+        {
+            HashTable_1 hat = new HashTable_1(5, 16);
+
+            int s1 = hat.Put(1);
+            int s2 = hat.Put(2);
+
+            Assert.AreEqual(false, s1 == s2);
+        }
+
+
+        [TestMethod]
+        public void TestHashV2_2()
+        {
+            HashTable_1 hat = new HashTable_1(5, 16);
+
+            int s1 = hat.Put(1);
+            int s2 = hat.Put(1);
+
+            Assert.AreEqual(false, s1 == s2);
+        }
+
+
+        [TestMethod]
+        public void TestHashV2_3()
+        {
+            HashTable_1 hat = new HashTable_1(5, 16);
+
+            int s1 = hat.Put(1);
+            int s2 = hat.Put(1);
+            int s3 = hat.Put(1);
+            int s4 = hat.Put(1);
+            int s5 = hat.Put(1);
+            int s6 = hat.Put(1);
+
+            Assert.AreEqual(false, s1 == s2);
+            Assert.AreEqual(false, s1 == s3);
+            Assert.AreEqual(false, s1 == s4);
+            Assert.AreEqual(false, s1 == s5);
+            Assert.AreEqual(false, s1 == s6);
+            Assert.AreEqual(false, s2 == s3);
+            Assert.AreEqual(false, s2 == s4);
+            Assert.AreEqual(false, s2 == s5);
+            Assert.AreEqual(false, s2 == s6);
+            Assert.AreEqual(false, s3 == s2);
+            Assert.AreEqual(false, s3 == s4);
+            Assert.AreEqual(false, s3 == s5);
+            Assert.AreEqual(false, s3 == s6);
+            Assert.AreEqual(false, s4 == s3);
+            Assert.AreEqual(false, s4 == s5);
+            Assert.AreEqual(false, s4 == s6);
+            Assert.AreEqual(false, s5 == s6);
+        }
+
+
+        [TestMethod]
+        public void TestHashV2_4()
+        {
+            HashTable_1 hat = new HashTable_1(5, 16);
+            Random r = new Random();
+            int[] nxs = new int[hat.size];
+
+
+            for (int i = 0; i < hat.size; i++)
+                nxs[i] = hat.Put(r.Next(hat.size));
+
+
+            for (int n = 0; n < nxs.Length; n++)
+            {
+                for (int n2 = 0; n2 < nxs.Length; n2++)
+                    if (n != n2) Assert.AreEqual(true, nxs[0] != nxs[1]);
+            }
+        }
     }
 }
